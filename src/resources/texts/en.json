@@ -1,0 +1,10 @@
+{
+    "Errors": {
+        "error_msg_1": "Invalid user or password"
+    },
+    "Configs": {
+        "locale": "en"
+    },
+    "Aria_labels": {},
+    "Index": {}
+}

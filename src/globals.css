@@ -1,0 +1,16 @@
+:root {
+    --c_black: #2e2e2e;
+    --c_white: #fff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--c_black);
+    color: var(--c_white);
+}
