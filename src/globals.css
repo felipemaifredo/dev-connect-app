@@ -1,6 +1,20 @@
 :root {
-    --c_black: #2e2e2e;
+}
+
+body[data-theme="light"] {
+    --c_bg: #ffffff;
+    --c_bg_nav: #d8d8d8;
+    --c_texts: #2e2e2e;
     --c_white: #fff;
+    --c_black: #000;
+}
+
+body[data-theme="dark"] {
+    --c_bg: #2e2e2e;
+    --c_bg_nav: #242424;
+    --c_texts: #fff;
+    --c_white: #fff;
+    --c_black: #000;
 }
 
 * {
@@ -11,6 +25,12 @@
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: var(--c_black);
-    color: var(--c_white);
+    background-color: var(--c_bg);
+    color: var(--c_texts);
+
+    & > .body_container {
+        padding-left: 405px;
+        width: 100%;
+        height: auto;
+    }
 }

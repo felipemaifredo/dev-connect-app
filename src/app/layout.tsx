@@ -26,7 +26,7 @@ export default async function RootLayout({ children, }: Readonly<{ children: Rea
 
   return (
     <NextIntlClientProvider>
-      <BaseLayout locale={cookieStore.get("NEXT_LOCALE")?.value || "pt"} >
+      <BaseLayout locale={cookieStore.get("NEXT_LOCALE")?.value || "pt"}>
         {children}
       </BaseLayout>
     </NextIntlClientProvider>

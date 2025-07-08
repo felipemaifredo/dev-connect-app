@@ -1,4 +1,7 @@
 //
+import { Nav } from "@/src/ui/components/Nav"
+
+//
 type BaseLayoutTypes = {
     children: React.ReactNode
     locale: string
@@ -25,8 +28,11 @@ export const BaseLayout = ({ children, locale }: BaseLayoutTypes) => {
 
     return (
         <html lang={ defineLang() }>
-            <body>
-                {children}
+            <body data-theme="dark">
+                <Nav />
+                <div className="body_container">
+                    {children}
+                </div>
             </body>
         </html>
     )
