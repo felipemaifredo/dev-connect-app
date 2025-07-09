@@ -7,5 +7,5 @@ import Image from "next/image"
 
 //
 export const UseLogo = () => {
-    return <Image src={logoW} alt="Logomarca" width={240} />
+    return <Image src={logoW} alt="Logomarca" width={200} />
 }
