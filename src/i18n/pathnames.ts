@@ -1,6 +1,7 @@
 export const pathnames = {
     /* PUBLIC ROUTES */
     "/": "/",
+    "/login": "/login",
     /* PRIVATE ROUTES */
     "/explore": {
         pt: "/explorar",

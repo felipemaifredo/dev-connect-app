@@ -1,11 +1,11 @@
-'use client'
+"use client"
 
 import { useState } from "react"
 import { supabase } from "@/src/lib/db/supabase"
 
 export const RegisterPage = () => {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
     const [message, setMessage] = useState<string | null>(null)
 
     const handleRegister = async (e: React.FormEvent) => {
@@ -20,7 +20,7 @@ export const RegisterPage = () => {
         if (error) {
             setMessage(`Erro: ${error.message}`)
         } else {
-            setMessage('Cadastro realizado! Verifique seu email para confirmar.')
+            setMessage("Cadastro realizado! Verifique seu email para confirmar.")
         }
     }
 
@@ -48,7 +48,6 @@ export const RegisterPage = () => {
                     Registrar
                 </button>
             </form>
-
             {message && <p>{message}</p>}
         </div>
     )

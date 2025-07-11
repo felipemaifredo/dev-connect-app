@@ -21,38 +21,3 @@
     }
 }
 
-.post_container {
-    width: 450px;
-    height: 125px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    padding: 10px;
-    border: 1px solid var(--c_texts);
-    border-radius: 10px;
-
-    & > img {
-        border-radius: 50%;
-    }
-
-    & > .content_post {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: flex-start;
-        gap: 5px;
-
-        & > .name {
-            font-size: 1.1rem;
-        }
-
-        & > .btns {
-
-            & > .time {
-                opacity: .5;
-                font-size: .9rem;
-            }
-        }
-    }
-}

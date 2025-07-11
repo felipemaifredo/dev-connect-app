@@ -1,36 +1,37 @@
+"use client"
 import styles from "./styles/feedpage.module.css"
 
-import imgP from "@/src/resources/assets/p.jpg"
+import { useState, useEffect } from "react"
 
-import Image from "next/image"
-import { supabase } from "@/src/lib/db/supabase"
+import { RenderPost } from "@/src/ui/components/RenderPost"
 
 import type { postTypes } from "@/src/types/postsTypes"
 
-export const FeedPage = async () => {
-    const { data, error } = await supabase.from("posts").select("*")
+import { useAuthStore } from "@/src/lib/store/useAuthStore"
+
+export const FeedPage = () => {
+    const [fetching, setFething] = useState<boolean>(true)
+    const [data, setData] = useState<any>()
+    const user = useAuthStore((state) => state.user)
+
+    if (fetching) {
+        return (
+            <div className={styles.feedpage}>
+                <h2>Feed</h2>
+                 <h1>Bem-vindo, {user?.email}</h1>
+                <p>Carregando posts...</p>
+            </div>
+        )
+    }
 
     return (
         <div className={styles.feedpage}>
             <h2>Feed</h2>
+            <h1>Bem-vindo, {user?.email}</h1>
             <button>Novo Post</button>
             <div className={styles.content_container}>
                 {data?.map((post: postTypes) => (
-                    <div key={post.name} className={styles.post_container}>
-                        <Image
-                            src={imgP}
-                            height={80}
-                            width={80}
-                            alt="Imagem de pessoa"
-                        />
-                        <div className={styles.content_post}>
-                            <p className={styles.name}><strong>{post.name}</strong></p>
-                            <p className={styles.cotent}>{post.content}</p>
-                            <div className={styles.btns}>
-                                <p className={styles.time}>{post.time}</p>
-                            </div>
-                        </div>
-                    </div>
+                    <RenderPost key={post.id} postData={post} />
                 ))}
             </div>
         </div>

@@ -3,9 +3,12 @@
 import { useState } from "react"
 import { useRouter } from "@/src/i18n/routing"
 import { supabase } from "@/src/lib/db/supabase"
+import { useAuthStore } from "@/src/lib/store/useAuthStore"
 
 export const LoginPage = () => {
     const router = useRouter()
+    const setUser = useAuthStore((state) => state.setUser)
+
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [errorMessage, setErrorMessage] = useState<string | null>(null)
@@ -14,7 +17,7 @@ export const LoginPage = () => {
         e.preventDefault()
         setErrorMessage(null)
 
-        const { error } = await supabase.auth.signInWithPassword({
+        const { data, error } = await supabase.auth.signInWithPassword({
             email,
             password
         })
@@ -22,12 +25,16 @@ export const LoginPage = () => {
         if (error) {
             setErrorMessage(error.message)
         } else {
-            router.push("/feed")
+            const user = data.user
+            if (user) {
+                setUser({ id: user.id, email: user.email || "" })
+                router.push("/feed")
+            }
         }
     }
 
     return (
-        <div >
+        <div>
             <h1>Login</h1>
             <form onSubmit={handleLogin}>
                 <input
@@ -44,15 +51,11 @@ export const LoginPage = () => {
                     onChange={(e) => setPassword(e.target.value)}
                     required
                 />
-                <button
-                    type="submit"
-                >
+                <button type="submit">
                     Entrar
                 </button>
             </form>
-            {errorMessage && (
-                <p>{errorMessage}</p>
-            )}
+            {errorMessage && <p>{errorMessage}</p>}
         </div>
     )
 }
